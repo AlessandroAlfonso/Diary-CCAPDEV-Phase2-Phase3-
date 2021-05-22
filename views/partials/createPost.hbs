@@ -1,0 +1,15 @@
+  <div class="w3-row-padding">
+                <div class="w3-col m12">
+                  <div class="w3-card w3-round w3-white">
+                    <div class="w3-container w3-padding">
+                      <h6 class="w3-opacity">Powered by Diary</h6>
+                      <form name="createPost" enctype="multipart/form-data" method="POST" action="/createPost">
+                       <textarea id="userPost" class="textinput" placeholder="Watchu tinkin' bro?" style="margin-bottom: 10px;">{{body}}</textarea>
+                       <textarea id="userTags" class="textinput" placeholder="#tags" style="margin-bottom: 10px;">{{tags}}</textarea>
+                      <button type="button" class="w3-button w3-theme" id="post"><i class="fa fa-edit"></i>Post</button>                             
+                     <input type="file" id="avatar" name="avatar" accept="image/jpeg, image/png" value="{{photo}}" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])" />             
+                    </form>
+                    </div>
+                  </div>
+                </div>
+              </div>

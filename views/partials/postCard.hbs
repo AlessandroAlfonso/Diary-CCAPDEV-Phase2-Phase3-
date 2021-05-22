@@ -1,0 +1,16 @@
+<div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+    <img src="{{avatar}}" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+    <span class="w3-right w3-opacity">{{created}}</span>
+    <h4>{{fName}} {{lName}}</h4><br>
+    <hr class="w3-clear">
+    <p>{{body}} {{tags}}</p>
+      <div class="w3-row-padding" style="margin:0 -16px">
+        <div class="w3-half">
+            <a href="" data-lightbox="id"><img src="{{post_photo}}" style="width: 100%;" alt="" class="w3-margin-bottom"></a>
+        </div>
+  
+    {{#each comments}}
+      {{>commentCard avatar = this.user.avatar fName = this.user.fName lName = this.user.lName comment = this.comment created = this.created useremail = user.useremail post = post}}
+    {{/each}}
+</div>
+</div>

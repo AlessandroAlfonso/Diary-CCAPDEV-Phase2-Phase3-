@@ -1,0 +1,18 @@
+<div class="media mb-3">
+    <img src="{{avatar}}" alt="img" width="45px" height="45px" class="rounded-circle mr-2">
+
+    <div class="media-body">
+            <p class="card-text text-justify"><strong>{{fName}} {{lName}}</strong>{{comment}} {{created}}</p>
+    </div>
+
+    {{#match useremail activeid}}
+    <div class="edit-delete" style="float: right;">
+        <div class="edit-delete-section">
+            <a href="" style="text-decoration: none;">Edit</a>
+            <a href="/comment/delete/{{useremail}}/{{post}}" style="text-decoration: none;">Delete</a>
+        </div>
+    </div>
+    {{/match}}
+</div>
+
+<!-- insert delete and edit here-->

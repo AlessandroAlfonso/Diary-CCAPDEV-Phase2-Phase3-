@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Castoro&display=swap');
+
+h1 {
+    font-family: 'Castoro', serif;
+}
+
+body{
+    background: rgb(255, 255, 255);
+    /* background: linear-gradient(72deg, rgba(228,228,228,1) 0%, rgba(255,255,255,1) 100%); */
+}
+
+.btn-custom {
+    transition: 0.5s;
+    background-color: #D81E5B;
+    color: white;
+}
+
+.btn-custom:hover {
+    transition: 0.5s;
+    background-color: #9b1a45;
+}
+
+
+.btn-secondary{
+    background-color: #B9E36C;
+    color: black !important;
+}
+
+.btn-secondary:hover{
+    transition: 0.5s;
+    background-color: #90b943;
+}
+
+.nav-link {
+    color: white !important;
+}
+
+.navbar-inverse {
+    background-color: #D81E5B !important;
+    border-color: #D81E5B !important;
+    box-shadow: 0px 3px 2px #D81E5B !important;
+}
+
+.navbar-admu {
+    background-color: #003a6c !important;
+    border-color:  #01315c !important;
+    box-shadow: 0px 3px 2px #01294d !important;
+  
+}
+
+.navbar-dlsu {
+    background-color: #00703c !important;
+    border-color:  #006335 !important;
+    box-shadow: 0px 3px 2px #01552e !important;
+   
+}
+
+.navbar-up {
+    background-color: #7B1113 !important;
+    border-color:  rgb(107, 14, 16) !important;
+    box-shadow: 0px 3px 2px rgb(192, 166, 131) !important;
+   
+}
+
+.navbar-ust {
+    background-color: #FEC00F !important;
+    border-color:  rgb(238, 178, 13) !important;
+    box-shadow: 0px 3px 2px rgb(223, 167, 12) !important;
+    color: black !important;
+    
+}
+
+.navbar-brand{
+    font-family: 'Castoro', serif;
+    color: white !important;
+}
+
+
+.navbar-inverse .navbar-nav>li>a {
+    color: #ffffff;
+}
+
+.post-comment{
+    max-width: fit-content;
+}
+
+textarea{
+    resize: inherit !important;
+}
