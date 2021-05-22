@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sign up</title>
+        <link rel="stylesheet" type="text/css" href="public/index.css">
+    </head>
+    <body>
+        <script>
+            function validate()
+            {
+                var p = document.getElementsByClassName("text-input");
+                var pass = document.getElementById ("password");
+                var cpass = document.getElementById ("confirm-password");
+                if(p.value ==="")
+                {
+                    p.className += "error";
+                    return (false);
+                }
+                if (pass.value!==cpass.value)
+                {
+                    pass.className += "error";
+                    cpass.className += "error";
+                    return (false);
+                }
+                if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(formentry.email.value)){
+                     return (true);
+                }
+                else
+                {
+                    var email = document.formentry.email.classList.add("error");
+                    return (false);
+                }
+                    
+            };
+        </script>
+        <div class="center-content">
+            <div class="left-content">
+                <img src="img/photo.png">
+            </div> 
+            <div class="right-content">
+                <div class="form-1">
+                    <img src="img/DiaryLogo.png" class="diary-logo">
+                    <p class="title">Create a new account</p>
+                    <form name="formentry" onsubmit="return validate()" action="index.html">
+                        <input type="text" id="fname" name="fname" placeholder="First name" required class="text-input">
+                        <input type="text" id="lname" name="lname" placeholder="Last name" required class="text-input">
+                        <input type="text" id="email" name="email" placeholder="Email address" required class="text-input">
+                        <input type="password" id="password" name="password" placeholder="Password" required class="text-input">
+                        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm password" required class="text-input"> 
+                        <input type="submit" id="submit" name="submit">
+                        <a type="submit" id="submit" name="submit" href="/signup" class="link">Sign up!</a>
+                    </form> 
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
