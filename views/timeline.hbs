@@ -8,13 +8,18 @@
 
     <!-- Custom Stylesheet -->
     <link rel="icon" href="/img/logo.png">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+    <link rel="stylesheet" href="public/lightbox.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
     <link rel="stylesheet" href="/css/Design2.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
     <link rel="stylesheet" href="/css/design.css">
     <link rel="stylesheet" href="/css/style.css">
-
+    <link rel="stylesheet" href="/css/button.css">
 
 
     </head>
@@ -50,18 +55,66 @@
         {{>gallery}}
     </div>
     <div class="col-12 col-lg-6 middle-column" >
-        
         <!-- postbar  -->
-        {{>createPost
-                avatar = user.avatar
-                input_body = input.body
-                input_tags = input.tags
-        }}
-        </div>
+        {{>createPost avatar = user.avatar input_body = input.body input_tags = input.tags email = email }}
+        <input type="text" class="form-control" id="postId" name="postId" value="{{_id}}" style="visibility: hidden;"/>
+        {{#each posts}}
+                <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+                <img src="feed/feed1.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+                <span class="w3-right w3-opacity">{{created}}</span>
+                <h4>{{fName}} {{lName}}</h4><br>
+                <hr class="w3-clear">
+                <p>{{this.body}}</p>
+                <a href="#">{{this.tags}}</a>
+                  <div class="w3-row-padding" style="margin:0 -16px">
+                    <div class="w3-half">
+                         {{#if this.photo.data}}
+                            <a href = "" data-lightbox="id"> <img src="data:{{this.photo.contentType}};base64,{{this.photo.data}}" style="width: 100%;" alt="" class="w3-margin-bottom"></a>
+                        {{/if}}
+                    </div>
+                    </div>
+                 <hr class="w3-clear">
+                <div class="media mb-3">
+                    <img src="img/DP.jpg" alt="img" width="45px" height="45px" class="rounded-circle mr-2">
+
+                    <div class="media-body">
+                            <p class="card-text text-justify"><strong>{{fName}} {{lName}}:</strong>{{this.comment}}</p>
+                    </div>
+                </div>
+
+                <form name="createComment" enctype="multipart/form-data" method="POST" action="/createComment/{{email}}">
+                <div class="w3-row-padding" style="margin:0 -16px">
+                  <div class="container-comment">
+                    <div class="comment">
+                        <textarea class="textinput" placeholder="Write a comment...">{{comment}}</textarea>
+                    </div>
+                </div>
+              </div>
+              <div class="w3-half">
+                <button id="like" type="button" class="w3-button  w3-margin-bottom"><i onClick="Toggle" id="like" class="far fa-thumbs-up"></i>  Like</button> 
+                <button type="button" class="w3-button  w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button>
+                <button type="button" class="w3-button  w3-margin-bottom"><i class="fa fa-remove"></i>  Delete</button> 
+              </div>
+                </form>
+
+
+              </div>
+        {{/each}}
+    </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
         crossorigin="anonymous">
+</script>
+<script>
+    var btn = document.getElementById('like');
+
+    function Toggle(){
+        if(btn.classList.contains("far")){
+            btn.classList.remove("far");
+            btn.classList.add("fa")
+        }
+    }
 </script>
 
 </body>
