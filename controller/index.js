@@ -1,12 +1,14 @@
 const mongoose = require('mongoose');
 const db = require('../models/db.js');
 const Profile = require('../models/ProfileModel');
+const Comment = require('../models/CommentsModel');
 const Post = require('../models/PostsModel');
 const bcrypt = require('bcrypt');
 const fs = require('fs');
 const About = require('../models/AboutModel');
 const helper = require('../helper/helper.js');
 const { validationResult, body } = require('express-validator');
+
 const saltRounds = 10;
 const rendFunctions = {
 	getLogIn: function (req, res) {
@@ -106,28 +108,18 @@ const rendFunctions = {
 						fName: fName,
 						lName: lName,
 						bio: bio,
-						photo: {
-							data: fs.readFileSync(req.file.path).toString('base64'),
-							contentType: req.file.mimetype,
-						},
 					};
-					fs.unlink(req.file.path, (error) => {
-						if (error) res.json(error);
-					});
 					db.insertOne(Profile, user, function (flag) {
 						console.log(req.session);
-
 						if (flag) {
 							req.session.user = user._id;
 						}
-
 					});
 					res.redirect('/');
 				});
 			}
 		});
 	},
-
 
 	getProfile: function (req, res) {
 		var email = req.params.email;
@@ -252,7 +244,6 @@ const rendFunctions = {
 		res.redirect('/timeline/' + email);
 	},
 
-	//Not Running//
 	createPost: async function (req, res) {
 		const { email } = req.params;
 		const body = helper.sanitize(req.body.body);
@@ -286,6 +277,50 @@ const rendFunctions = {
 		await post.save();
 		res.redirect('/timeline/' + req.params.email);
 	},
-};
+
+	// deletePost: function (req, res) {
+	// 	const { email } = req.params;
+	// 	console.log(req.params._id);
+	// 	db.deleteOne(Post, { id: req.params._id }, function (result) {
+	// 		if (result) {
+	// 			res.redirect('/timeline/' + req.params.email);
+	// 			console.log('SUCCESS');
+	// 		}
+	// 	});
+	// },
+
+
+	deletePost: function (req, res) {
+        var post_id = helper.sanitize(req.params.postId);
+        var post_details = {
+            _id: ObjectID(post_id)
+        }
+
+        db.updateOne(Profile, {_id: req.session.user}, function(user){
+            if(user){
+                db.deleteOne(Post, post_details, function(f){
+                    if(f){
+                        console.log('deleted: ', post_id)
+                        res.redirect(`/profile/${req.session.user}`);
+                    }
+
+                });
+            }
+
+        })
+    },
+
+	createComment: async function (req, res) {
+		const { email } = req.params;
+		const comment = helper.sanitize(req.body.comment);	
+			const create = new Comment({
+				user: email,
+				comment: comment,
+			});
+			console.log(comment)
+			await create.save();
+			return res.redirect('/timeline/' + req.params.email);
+	},
+}
 
 module.exports = rendFunctions;
