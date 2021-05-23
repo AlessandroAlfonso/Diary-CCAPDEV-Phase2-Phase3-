@@ -42,7 +42,7 @@
             };
         </script>
 
-        <div class="center-content" style="width: 40%; height: 50%;">
+        <div class="center-content" style="width: 40%; height: 65%;">
             <div class="left-content">
                 <img src="img/photo.png">
             </div> 
@@ -51,7 +51,9 @@
                 <div class="form-1">
                     <img src="img/DiaryLogo.png" class="diary-logo" style="margin-right: 40%;">
                     <p class="title">Create a new account</p>
-                    <form name="formentry" class="form-group" method="post" action="/signup">  
+                    <form name="formentry" class="form-group" method="post" enctype="multipart/form-data" action="/signup">  
+                    <img class="img-circle" id="output" src="/img/default.png" style="margin-left: 25%;" />
+                        <input type="file" id="avatar" name="avatar" required accept="image/jpeg, image/png" value="{{avatar}}" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])" />
                         <input type="text" id="fName" name="fName" placeholder="First name" value = "{{input.fname}}" required class="text-input">
                         <input type="text" id="lName" name="lName" placeholder="Last name" value = "{{input.lname}}" required class="text-input">
                         <input type="text" id="email" name="email" placeholder="Email address" value = "{{input.email}}" required class="text-input">
